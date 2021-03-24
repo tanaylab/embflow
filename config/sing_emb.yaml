@@ -1,0 +1,16 @@
+mcell_mc2d_K: 25
+mcell_mc2d_T_edge: 0.019
+mcell_mc2d_proj_blur: 0.02
+mcell_mc2d_max_confu_deg: 4
+mcell_mc2d_edge_asym: FALSE
+mcell_mc2d_k_expand_inout_factor: NULL
+mcell_mc2d_gene_cell_cex: 1.2
+mcell_mc2d_cex: 1.6
+
+mcell_mc2d_height: 1000
+mcell_mc2d_width: 1000
+
+mcp_heatmap_width: 2000
+mcell_mc2d_plot_key: FALSE
+mc_plot_device: "png"
+
