@@ -8,5 +8,5 @@ test_network_flow_model = function() {
     mct1 = scdb_mctnetwork("sing_emb_wt10")
     mct2 = scdb_mctnetwork("test")
 
-    return(identical(mct1,mct2))
+    return(identical(mct1@network,mct2@network))
 }

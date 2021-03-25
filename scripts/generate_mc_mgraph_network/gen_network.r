@@ -1,6 +1,7 @@
 
 library("metacell")
 scdb_init("scrna_db/", force_reinit=T)
+source("scripts/generate_paper_figures/plot_network.r")
 #tgconfig::override_params("config/sing_emb.yaml","metacell")
 
 
@@ -116,10 +117,13 @@ build_net = function(mat_id,mc_id,mgraph_id,net_id,fig_dir,
     dir.create(fig_dir)
   }
   
-
-  mctnetwork_plot_net(mct_id = net_id, 
-                        fn=sprintf("%s/%s_net.png",fig_dir,net_id), 
-                        colors_ordered=network_color_ord,h = 4000,w = 2000)
+  mm_mctnetwork_plot_net(mct_id = net_id,
+                         fn = sprintf("%s/%s_net.png",fig_dir,net_id),w = 3500, h = 4900,
+                         dx_back = 0,
+                         colors_ordered=network_color_ord,plot_pdf = F,
+                         show_axes = F,
+                         show_over_under_flow = F,mc_cex = 1,max_lwd = 15,edge_w_scale = 2e-4,
+                         plot_mc_ids = F)
 
 
   message("plotted the network")
