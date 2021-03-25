@@ -1,19 +1,19 @@
 A single embryo, single cell time-resolved model for mouse gastrulation
 =======================================================================
 
-This repository contains all the code for reproducing the analysis from the gastrulation flow paper Mittnenzweig et al. (2021). The core analysis is done with the [metacell](https://github.com/tanaylab/metacell) R package, that also contains the code for generating the network flow model.
+This repository contains all the code for reproducing the analysis from the gastrulation flow paper Mittnenzweig et al. (2021). The analysis is done with the [metacell](https://github.com/tanaylab/metacell) R package, that also contains the code for generating the network flow model.
 
 ### Quick links
 
-- Metacell paper: Baran et al. 2019 [Genome Biol](https://doi.org/10.1186/s13059-019-1812-2)
+- Metacell paper: Baran et al. 2019 [Genome Biology](https://doi.org/10.1186/s13059-019-1812-2)
 
-- [Metacell](https://github.com/tanaylab/metacell) R package
+- [Metacell R package](https://github.com/tanaylab/metacell) 
 
 - Raw FASTQ files and processed UMI tables are available under GEO accession [GSE169210](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE169210)
 
-### Requirements
+### Requirements (R packages)
 
-- metacell package
+- metacell
 - lpsymphony
 - tidyverse
 - pheatmap
@@ -157,27 +157,6 @@ This will transfer cell-type and time annotation from the wt atlas to chimera/te
 - Removing cells from extraembryonic ectoderm and parietal endoderm
 - Merging each single-cell matrix with the wt single-cell matrix and creating a joint single-cell graph (metacell *cgraph* object).
 See summary_preprocessing.r and the corresponding scripts for more details.
-
-
-### Metacell R objects
-- 
--
-- 
-- 
-- 
--
-- 
-- 
-- 
-- 
-- 
-- 
-- 
--
-- 
--
--
-- 
 
 
 ### Contact
