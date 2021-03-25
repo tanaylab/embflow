@@ -22,6 +22,8 @@ This repository contains all the code for reproducing the analysis from the gast
 - tidyverse
 - shape
 - umap
+- qlcMatrix
+- ggrepel
 
 ### Usage
 

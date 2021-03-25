@@ -65,7 +65,7 @@ fig_4b = function(plot_pdf = T) {
   mc_fate = (mc_ag_n_f[as.character(mc_list),as.character(t)] %*% mct@mc_forward[[t]][mc_list,])[1,]
   
   for (i in time_points[-1]) {
-    print(i)
+    
     fate_tmp = (mc_ag_n_f[as.character(mc_list),as.character(i)] %*% mct@mc_forward[[i]][mc_list,])[1,]
     mc_fate = cbind(mc_fate,fate_tmp)
   }
@@ -344,7 +344,7 @@ fig_4h = function() {
   incl_colors = c("#DABE99","#C594BF","#FBBE92","#DFCDE4","#cc7818","#8DB5CE","#c9a997","#8870ad","#53f1fc","#1a3f52")
   
   for(gene in genes) {
-    print(gene)
+    
     plot_time_gene_mc_flow(confu = confu,mc = mc,mc_t = mc_t,gene = gene,incl_colors = incl_colors,fig_dir = "figs/paper_figs/fig4/fig_4h",max_t = 13,fig_pref = "early_nascent_mesoderm",plot_pdf = T)
   }
   
@@ -381,7 +381,7 @@ fig_4i = function() {
   incl_colors = c("#DABE99","#C594BF","#FBBE92","#DFCDE4","#cc7818","#8DB5CE","#c9a997","#8870ad","#53f1fc","#1a3f52")
   
   for(gene in genes) {
-    print(gene)
+    
     plot_time_gene_mc_flow(confu = confu,mc = mc,mc_t = mc_t,gene = gene,incl_colors = incl_colors,fig_dir = "figs/paper_figs/fig4/fig_4h",max_t = 13,fig_pref = "late_nascent_mesoderm",plot_pdf = T)
   }
   
@@ -422,7 +422,7 @@ mesoderm_mc_graphs = function() {
   incl_colors = c("#DABE99","#C594BF","#FBBE92","#DFCDE4","#cc7818","#8DB5CE","#c9a997","#8870ad","#53f1fc","#1a3f52")
   
   for(gene in genes) {
-    print(gene)
+    
     plot_time_gene_mc_flow(confu = confu,mc = mc,mc_t = mc_t,gene = gene,incl_colors = incl_colors,fig_dir = fig_dir,max_t = 13,fig_pref = "nasc_meso",plot_pdf = T)
   }
   
@@ -614,7 +614,7 @@ cmp_commitment_vs_time = function(mc_list,mct,time_points,mc,mc_commit = mc_list
   
   
   for (i in 12:1) {
-    print(i)
+    
     
     mc_fate_dist = mc_forward_m[[i]] %*% mc_fate_dist
     mc_fate_ls[[as.character(i)]] = mc_fate_dist

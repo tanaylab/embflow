@@ -251,9 +251,9 @@ fig_5c = function() {
   tfs = read.table(file = "data/fig5/tf_list_mesoderm.txt",sep = "\t",stringsAsFactors = F)$x
   
   for (tf in tfs) {
-    print(tf)
+    
     f = (legc[tf,] - min_legc[tf])/(max_legc[tf] - min_legc[tf]) > 0.8
-    print(sum(f))
+    
     
     mc_ff = mc_f[f]
     
@@ -622,8 +622,6 @@ compute_linear_model_predictions_fig_5def = function() {
   bad_genes = read.table("data/external_data/sing_emb_wt10.bad_genes.txt",sep = "\t",stringsAsFactors = F)$x
   feat_genes = setdiff(feat_genes, bad_genes)
   
-  marker = setdiff(feat_genes,tf_f)
-  
   tf_list = read.table("data/fig5/tf_list_mesoderm.txt",sep = "\t",stringsAsFactors = F)$x
   
   marker = setdiff(feat_genes,tf_list)
@@ -650,7 +648,7 @@ compute_linear_model_predictions_fig_5def = function() {
   }
   
   best_pred_2_tfs = sapply(marker,FUN =  function(g) {
-    print(g)
+    
     best_fit = best_fit_2tf(g)
     
     tmp = summary(lm(legc[best_fit[1],] ~ legc[best_fit[2],]))
@@ -683,7 +681,7 @@ compute_linear_model_predictions_fig_5def = function() {
   }
   
   best_pred_1_tf = sapply(marker,FUN =  function(g) {
-    print(g)
+    
     return(best_fit_1_tf(g))
   })
   

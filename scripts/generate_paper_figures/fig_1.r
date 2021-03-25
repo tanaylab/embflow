@@ -359,8 +359,8 @@ fig1_g_heatmap = function(plot_pdf = F) {
   cols = shades
   vals = seq(min_dens,max_dens,length.out = 1001)
   
-  show_val_ind = floor(1 +  c(0,0.01,0.02,0.026)*1000/max_dens)
-  vals[show_val_ind] = c(0,0.01,0.02,0.026)
+  show_vals_ind = floor(1 +  c(0,0.01,0.02,0.026)*1000/max_dens)
+  vals[show_vals_ind] = c(0,0.01,0.02,0.026)
   
   pdf(file = "figs/paper_figs/fig1/fig1_g/heatmap_color_scale.pdf",useDingbats = F)
   plot.new()

@@ -163,7 +163,7 @@ plot_focals = function(fig_dir,plot_pdf = F,bg = "white",focals = c("Epiblast", 
         fl = flow[foc_color,col_i]*2
         if(fl > 0) {
           calpha = add_alpha(col_i, 0.8)
-          message("at ", i, " fl ", fl)
+          #message("at ", i, " fl ", fl)
           draw_sig_edge(x1=t, x2t = t+1, x2 = t+1-2*fl-0.05, 
                         y1 = base_foc+cum_y-fl,
                         y2t = base_y[col_i]-smoo_y[[col_i]][as.character(t+1)], 
