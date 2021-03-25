@@ -18,19 +18,24 @@ gen_fig_5_plots = function() {
   fig_5a()
   fig_5b()
   fig_5c()
-  # Pleae run compute_linear_model_predictions_fig_5def() before running fig_5d, fig_5e, fig_5f
-  compute_linear_model_predictions_fig_5def()
+  # If the two files 
+  # data/fig5/best_pred_1_tf.txt
+  # data/fig5/best_pred_2tfs.txt
+  # are missing, please run compute_linear_model_predictions_fig_5def() before running fig_5d, fig_5e, fig_5f
+  # compute_linear_model_predictions_fig_5def()
   fig_5d()
   fig_5e()
   fig_5f()
   
-  # generating the list of mesodermal transcription factors displayed in Figure 5b,
-  # starting from a longer reference list of TFs
-  # please save them as tab-separated table to
-  # data/fig5/tf_list_mesoderm.txt
+  # list of mesodermal transcription factors displayed in Figure 5b
+  # was generated using the function
   # 
   # tf_list_mesoderm = generate_tf_mesoderm_list()
-  
+  # 
+  # and saving it as tab-separated table to
+  #
+  # data/fig5/tf_list_mesoderm.txt
+
 }
 
 

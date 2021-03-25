@@ -322,6 +322,88 @@ foxc_bulk_lfp_endo_ecto_exe_meso = function(reg = 1e-5) {
 }
 
 
+  
+cmp_egc_per_chimera_embryo = function(mat_nm,gnms_f = NULL,included_colors = NULL,reg = 1e-5) {
+    # calculates bulk expression per chim embryo for host and ko cells for the included_colors 
+    # calculates corresponding average bulk expression for the best matched wild type embryo 
+    # returns e_gc_ls bulk expression for host and KO cells
+    
+    #load(file = "data/paper_data/foxc12_chimera/nn_sc_color.Rda")
+    
+    mat=  scdb_mat(mat_nm)
+    mc_wt = scdb_mc("sing_emb_wt10_recolored")
+    
+    if(is.null(included_colors)) {
+      included_colors = mc_wt@color_key$color
+    }
+    
+    df_chim = read.table(sprintf("data/chimera_tetraploid_analysis/%s/time_match/time_match_summary.txt",mat_nm),sep = "\t",h = T,stringsAsFactors = F)
+    rownames(df_chim) = df_chim$embryo
+    chim_embryos = df_chim$embryo
+    
+    # read single cell color information
+    load(sprintf("data/chimera_tetraploid_analysis/%s/color_annotation/cmp_annot.Rda",mat_nm))
+    query_cls_col = cmp_annot$query_cls_col
+    
+    host_cls = names(query_cls_col)[(mat@cell_metadata[names(query_cls_col),"cell_type"] == "host") & 
+                                      (mat@cell_metadata[names(query_cls_col),"embryo"] %in% chim_embryos)& 
+                                      (query_cls_col %in% included_colors)] 
+    query_cls = names(query_cls_col)[(mat@cell_metadata[names(query_cls_col),"cell_type"] %in% c("control","KO")) & 
+                                       (mat@cell_metadata[names(query_cls_col),"embryo"] %in% chim_embryos) & 
+                                       (query_cls_col %in% included_colors) ] 
+    
+    if(is.null(gnms_f)) {
+      gnms_f = rownames(mat@mat)
+    }
+    
+    egc_query = t(tgs_matrix_tapply(mat@mat[gnms_f,query_cls],mat@cell_metadata[query_cls,"embryo"],sum))
+    rownames(egc_query) = gnms_f
+    n_umis = colSums(mat@mat[,query_cls])
+    n_umis = tapply(n_umis,mat@cell_metadata[query_cls,"embryo"],sum)
+    
+    egc_query = t(t(egc_query)/as.numeric(n_umis[colnames(egc_query)]))
+    
+    egc_host = t(tgs_matrix_tapply(mat@mat[gnms_f,host_cls],mat@cell_metadata[host_cls,"embryo"],sum))
+    rownames(egc_host) = gnms_f
+    n_umis = colSums(mat@mat[,host_cls])
+    n_umis = tapply(n_umis,mat@cell_metadata[host_cls,"embryo"],sum)
+    
+    egc_host = t(t(egc_host)/as.numeric(n_umis[colnames(egc_host)]))
+    
+    legc_query = log2(egc_query + reg)
+    legc_host = log2(egc_host + reg)
+    
+    return(list(egc_query = egc_query,egc_host = egc_host,legc_query = legc_query,legc_host = legc_host))
+}
+  
+cmp_egc_wt_per_embryo = function(gnms_f = NULL,included_colors = NULL,reg = 1e-5) {
+    
+    mat = scdb_mat("sing_emb_wt10")
+    mc_wt = scdb_mc("sing_emb_wt10_recolored")
+    
+    if(is.null(gnms_f)) {
+      gnms_f = rownames(mat@mat)
+    }
+    
+    if(is.null(included_colors)) {
+      included_colors = mc@color_key$color
+    }
+    
+    wt10_cls = names(mc_wt@mc)[mc_wt@colors[mc_wt@mc] %in% included_colors]
+    
+    egc_wt = t(tgs_matrix_tapply(mat@mat[gnms_f,wt10_cls],mat@cell_metadata[wt10_cls,"transcriptional_rank"],sum))
+    rownames(egc_wt) = gnms_f
+    n_umis = colSums(mat@mat[,wt10_cls])
+    n_umis = tapply(n_umis,mat@cell_metadata[wt10_cls,"transcriptional_rank"],sum)
+    
+    egc_wt = t(t(egc_wt)/as.numeric(n_umis[colnames(egc_wt)]))
+    
+    legc_wt = log2(egc_wt + reg)
+    
+    return(legc_wt)
+}
+  
+
 
 if(0) {
   
@@ -401,86 +483,6 @@ if(0) {
   
   
   
-  
-  cmp_egc_per_chimera_embryo = function(mat_nm,gnms_f = NULL,included_colors = NULL,reg = 1e-5) {
-    # calculates bulk expression per chim embryo for host and ko cells for the included_colors 
-    # calculates corresponding average bulk expression for the best matched wild type embryo 
-    # returns e_gc_ls bulk expression for host and KO cells
-    
-    #load(file = "data/paper_data/foxc12_chimera/nn_sc_color.Rda")
-    
-    mat=  scdb_mat(mat_nm)
-    mc_wt = scdb_mc("sing_emb_wt10_recolored")
-    
-    if(is.null(included_colors)) {
-      included_colors = mc_wt@color_key$color
-    }
-    
-    df_chim = read.table(sprintf("data/chimera_tetraploid_analysis/%s/time_match/time_match_summary.txt",mat_nm),sep = "\t",h = T,stringsAsFactors = F)
-    rownames(df_chim) = df_chim$embryo
-    chim_embryos = df_chim$embryo
-    
-    # read single cell color information
-    load(sprintf("data/chimera_tetraploid_analysis/%s/color_annotation/cmp_annot.Rda",mat_nm))
-    query_cls_col = cmp_annot$query_cls_col
-    
-    host_cls = names(query_cls_col)[(mat@cell_metadata[names(query_cls_col),"cell_type"] == "host") & 
-                                      (mat@cell_metadata[names(query_cls_col),"embryo"] %in% chim_embryos)& 
-                                      (query_cls_col %in% included_colors)] 
-    query_cls = names(query_cls_col)[(mat@cell_metadata[names(query_cls_col),"cell_type"] %in% c("control","KO")) & 
-                                       (mat@cell_metadata[names(query_cls_col),"embryo"] %in% chim_embryos) & 
-                                       (query_cls_col %in% included_colors) ] 
-    
-    if(is.null(gnms_f)) {
-      gnms_f = rownames(mat@mat)
-    }
-    
-    egc_query = t(tgs_matrix_tapply(mat@mat[gnms_f,query_cls],mat@cell_metadata[query_cls,"embryo"],sum))
-    rownames(egc_query) = gnms_f
-    n_umis = colSums(mat@mat[,query_cls])
-    n_umis = tapply(n_umis,mat@cell_metadata[query_cls,"embryo"],sum)
-    
-    egc_query = t(t(egc_query)/as.numeric(n_umis[colnames(egc_query)]))
-    
-    egc_host = t(tgs_matrix_tapply(mat@mat[gnms_f,host_cls],mat@cell_metadata[host_cls,"embryo"],sum))
-    rownames(egc_host) = gnms_f
-    n_umis = colSums(mat@mat[,host_cls])
-    n_umis = tapply(n_umis,mat@cell_metadata[host_cls,"embryo"],sum)
-    
-    egc_host = t(t(egc_host)/as.numeric(n_umis[colnames(egc_host)]))
-    
-    legc_query = log2(egc_query + reg)
-    legc_host = log2(egc_host + reg)
-    
-    return(list(egc_query = egc_query,egc_host = egc_host,legc_query = legc_query,legc_host = legc_host))
-  }
-  
-  cmp_egc_wt_per_embryo = function(gnms_f = NULL,included_colors = NULL,reg = 1e-5) {
-    
-    mat = scdb_mat("sing_emb_wt10")
-    mc_wt = scdb_mc("sing_emb_wt10_recolored")
-    
-    if(is.null(gnms_f)) {
-      gnms_f = rownames(mat@mat)
-    }
-    
-    if(is.null(included_colors)) {
-      included_colors = mc@color_key$color
-    }
-    
-    wt10_cls = names(mc_wt@mc)[mc_wt@colors[mc_wt@mc] %in% included_colors]
-    
-    egc_wt = t(tgs_matrix_tapply(mat@mat[gnms_f,wt10_cls],mat@cell_metadata[wt10_cls,"transcriptional_rank"],sum))
-    rownames(egc_wt) = gnms_f
-    n_umis = colSums(mat@mat[,wt10_cls])
-    n_umis = tapply(n_umis,mat@cell_metadata[wt10_cls,"transcriptional_rank"],sum)
-    
-    egc_wt = t(t(egc_wt)/as.numeric(n_umis[colnames(egc_wt)]))
-    
-    legc_wt = log2(egc_wt + reg)
-    
-    return(legc_wt)
-  }
-  
+
   
 }
