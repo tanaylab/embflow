@@ -1,3 +1,4 @@
+library("metacell")
 scdb_init("scrna_db/",force_reinit = T)
 scfigs_init("figs")
 

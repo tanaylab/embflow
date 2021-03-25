@@ -356,27 +356,20 @@ fig1_g_heatmap = function(plot_pdf = F) {
   
   # plot color scale
   shades = rev(colorRampPalette(col_palette,bias = 0.7)(1001))
-  
+  cols = shades
   vals = seq(min_dens,max_dens,length.out = 1001)
   
   show_val_ind = floor(1 +  c(0,0.01,0.02,0.026)*1000/max_dens)
   vals[show_val_ind] = c(0,0.01,0.02,0.026)
   
-  if (plot_pdf) {
-    
-    fig_fn = sprintf("%s/mc_vs_embryo_ranks_col_scale.pdf",fig_dir)
-    
-    tgconfig::set_param(param = "mc_plot_device",value = "pdf",package = "metacell")
-    
-    plot_color_bar(vals =  vals,cols = shades,fig_fn = fig_fn,show_vals_ind =  show_val_ind)
-    
-  } else {
-    fig_fn = sprintf("%s/mc_vs_embryo_ranks_col_scale.png",fig_dir)
-    
-    tgconfig::set_param(param = "mc_plot_device",value = "png",package = "metacell")
-    
-    plot_color_bar(vals = vals,cols = shades,fig_fn = fig_fn,show_vals_ind = show_val_ind)
-  }
+  pdf(file = "figs/paper_figs/fig1/fig1_g/heatmap_color_scale.pdf",useDingbats = F)
+  plot.new()
+  plot.window(xlim=c(0,100), ylim=c(0, length(cols) + 3))
+  rect(7, 1:length(cols), 17, 1:length(cols) + 1, border=NA, col=cols)
+  rect(7, 1, 17, length(cols)+1, col=NA, border = 'black')
+  
+  text(19, (1:length(cols))[show_vals_ind] + 0.5, labels=vals[show_vals_ind], pos=4)
+  dev.off()
   
   
   
