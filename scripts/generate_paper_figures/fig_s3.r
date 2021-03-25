@@ -147,7 +147,7 @@ plot_marks_along_clust = function(genes,mc_clust,mc,fig_dir,plot_pdf = F,additio
   }
   
   for(g in genes) {
-    print(g)
+    
     if(plot_pdf) {
       pdf(sprintf("%s/%s.pdf", fig_dir, g),w=10,h=3,useDingbats = F)
       #svg(sprintf("%s/%s.svg", fig_dir, g),w=10,h=3)

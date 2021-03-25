@@ -235,7 +235,7 @@ fig_s4g = function() {
   incl_colors = c("#DABE99","#C594BF","#FBBE92","#DFCDE4","#cc7818","#8DB5CE","#c9a997","#8870ad","#53f1fc","#1a3f52")
   
   for(gene in genes) {
-    print(gene)
+    
     plot_time_gene_mc_flow(confu = confu,mc = mc,mc_t = mc_t,gene = gene,incl_colors = incl_colors,fig_dir = "figs/paper_figs/fig_s4/fig_s4g",max_t = 13,fig_pref = "nascent_mesoderm",plot_pdf = T)
   }
   
@@ -275,7 +275,7 @@ if(0) {
     
     
     for (i in 1:153) {
-      print(i)
+      
       #load(sprintf("data/paper_data/bootstrap/color_transitions/col_trans_per_t_%d.Rda",i))
       
       mct_bs_id = paste0("sing_emb_wt10_",i)

@@ -205,7 +205,7 @@ plot_all_veins = function(ordered_cols,fig_dir="figs", plot_pdf = F,first_col="#
       smoo_y1[[cur_col]] = (-2*lo+bot_front)*y_expand
       names(smoo_y1[[cur_col]]) = ys$x
       names(smoo_y2[[cur_col]]) = ys$x
-		message("cur_col ", cur_col, " persp " , col_persp[cur_col])
+		#message("cur_col ", cur_col, " persp " , col_persp[cur_col])
       persp_polygon(c(ys$x,rev(ys$x)), 
 				  c(bot_front*y_expand, (rev(bot_front)+rev(-2*lo))*ry_expand), 
 					col = calpha,

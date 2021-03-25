@@ -102,7 +102,7 @@ plot_cell_type_transition_frequencies  = function(plot_pdf = T) {
   
   
   for (param in param_ls) {
-    print(param)
+    
     n_param = length(grep(pattern = param,x = net_id_ls_f,v = T))
     
     param_vals = ls_of_param[[param]]

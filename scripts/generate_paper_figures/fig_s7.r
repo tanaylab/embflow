@@ -348,11 +348,11 @@ chimera_ko_vs_host_expr = function(ct,lfp_thr = 1.5) {
     ylab("Host")
   
   ct_name = ifelse(col_to_ct[ct] == "Amnion/Chorion","Amnion_Chorion",col_to_ct[ct])
-  print(ct_name)
+  
   if(length(ct_name) > 1) {
     ct_name = paste(ct_name,collapse = "_")
   }
-  print(ct_name)
+  
   
   return(p)
 }

@@ -4,12 +4,12 @@ scdb_init("scrna_db/", force_reinit=T)
 #tgconfig::override_params("config/sing_emb.yaml","metacell")
 
 
-build_sing_emb_wt10_network = function() {
+build_sing_emb_wt10_network = function(net_id = "sing_emb_wt10") {
   
   mat_id = "sing_emb_wt10"
   mc_id = "sing_emb_wt10_recolored"
   mgraph_id = "sing_emb_wt10_recolored_logist"
-  net_id = "sing_emb_wt10"
+  #net_id = "sing_emb_wt10"
   fig_dir = "figs/sing_emb_wt10.net"
   if(!dir.exists(fig_dir)) {
     dir.create(fig_dir)

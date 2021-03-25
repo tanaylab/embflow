@@ -195,7 +195,7 @@ fig_6d = function(plot_pdf = T) {
   xlim_max = dev_time[153]
   
   for(cell_type in included_colors) {
-    print(cell_type)
+    
     
     
     ct_freq_ls = lapply(emb_vs_ct_ls,FUN = function(emb_vs_ct) {
