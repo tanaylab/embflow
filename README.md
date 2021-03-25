@@ -1,18 +1,15 @@
 A single embryo, single cell time-resolved model for mouse gastrulation
 =======================================================================
 
-This repository contains all the code for reproducing the analysis from the gastrulation flow paper Mittnenzweig et al. (2021). The core analysis is done with the [metacell](https://tanaylab.bitbucket.io/metacell-r/index.html) R package, that also contains the code for generating the network flow model.
+This repository contains all the code for reproducing the analysis from the gastrulation flow paper Mittnenzweig et al. (2021). The core analysis is done with the [metacell](https://github.com/tanaylab/metacell) R package, that also contains the code for generating the network flow model.
 
 ### Quick links
 
 - Metacell paper: Baran et al. 2019 [Genome Biol](https://doi.org/10.1186/s13059-019-1812-2)
 
-- Metacell R package
+- [Metacell](https://github.com/tanaylab/metacell) R package
 
 - Raw FASTQ files and processed UMI tables are available under GEO accession [GSE169210](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE169210)
-
-- The metacell scRNA database for this paper can be downloaded from [here](). 
-
 
 ### Requirements
 
@@ -24,7 +21,6 @@ This repository contains all the code for reproducing the analysis from the gast
 - Matrix
 - tidyverse
 - shape
-
 
 ### Usage
 
@@ -51,12 +47,92 @@ gen_fig_1_plots()
 
 ```
 
-#### Generating manifold graph and network flow object
+#### Generating manifold graph and network flow object of wildtype embryos
+Metacell objects of 
+
 
 
 #### Single-embryo timing
+To regenerate the single-embryo timing data underlying Figure 1, please run
+``` r
+# load metacell package
+library("metacell")
+# initializing the metacell scrna database
+scdb_init("scrna_db")
 
+source("scripts/single_embryo_timing.r")
+gen_fig_1_plots()
+embryo_ranks = gen_single_embryo_timing()
+
+# subfunctions calculating intrinsic_rank and reference_rank of each embryo
+# are contained in gen_single_embryo_timing()
+```
+The output data frame *embryo_ranks* was added to the single-cell metadata information of the metacell matrix object. All subsequent functions using single-embryo time information, are extracting it from the *cell_metadata* entry of the WT metacell single-cell matrix object *sing_emb_wt10*.
+``` r
+# load metacell package
+library("metacell")
+# initializing the metacell scrna database
+scdb_init("scrna_db")
+
+mat = scdb_mat("sing_emb_wt10")
+md = mat@cell_metadata
+```
 
 #### Network flow parameter stability analysis
+The parameter stability analysis of network flows underlying Figure S2A can be regenerated using
+``` r
+# regnerate data - this might take some time
+source("scripts/parameter_stability_analysis.r")
+gen_parameter_stability_analysis()
+
+# replotting Figure S2A
+source("scripts/generate_paper_figures/fig_s2.r")
+fig_s2a()
+```
 
 #### Foxc12 chimera and tetraploid analysis
+To generate specific plots of Figures 6, S6 and S7, please run the corresponding functions from *fig_6.r*, *fig_s6.r* or *fig_s7.r*. Users interested in recomputing parts of the Foxc12 chimera and tetraploid embryo analysis (not needed for regenerating the plots), should run the following functions:
+``` r
+library("metacell")
+scdb_init("scrna_db/")
+
+source("scripts/foxc12/generate_chimera_tetraploid_data_analysis.r")
+
+# Chimera embryos injected with Foxc12 DKO cells
+foxc_chimera_generate_time_and_cell_type_annotation()
+
+# Chimera embryos injected with control cells
+control_chimera_generate_time_and_cell_type_annotation()
+
+# Tetraploid embryos injected with Foxc12 DKO cells
+foxc_tetraploid_generate_time_and_cell_type_annotation()
+
+# Tetraploid embryos injected with control cells
+control_tetraploid_generate_time_and_cell_type_annotation()
+```
+This will transfer cell-type and time annotation from the wt atlas to chimera/tetraploid embryos. Output is saved in *data/chimera_tetraploid_analysis/*. Scripts involved in preprocessing plates from the chimera and tetraploid embryo analyis are saved in the *scripts/foxc12/preprocessing/*. This includes
+- Gating of single cells using the FACS GFP channel
+- Removing cells from extraembryonic ectoderm and parietal endoderm
+- Merging each single-matrix with the wt the single-cell matrix and creating a joint single-cell graph.
+See summary_preprocessing.r and the corresponding scripts for more details.
+
+
+### Metacell R objects
+- 
+-
+- 
+- 
+- 
+-
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+-
+- 
+-
+-
+- 

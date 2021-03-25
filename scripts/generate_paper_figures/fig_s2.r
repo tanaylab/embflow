@@ -14,7 +14,7 @@ gen_fig_s2_plots = function() {
   # Regenerating this data takes some time because mgraphs and mctnetwork objects have to be constructed for each sampled parameter value
   
   fig_s2a()
-  fig_s2b()
+  #fig_s2b()
   
 }
 
