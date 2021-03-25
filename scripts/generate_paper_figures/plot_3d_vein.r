@@ -49,7 +49,7 @@ plot_persp_levels = function(smoo_y1, smoo_y2, col_persp, cols, lims, k_persp=0.
 
 }
 
-draw_sig_edge = function(x1, x2, x2t, y1, y2, y2t, flow, col1, col2, col_alpha=0.8, clip_top, clip_bot, z1, z2) 
+draw_sig_edge_3d = function(x1, x2, x2t, y1, y2, y2t, flow, col1, col2, col_alpha=0.8, clip_top, clip_bot, z1, z2) 
 {
 	x1 = x1
 	y1 = y1
@@ -232,7 +232,7 @@ plot_all_veins = function(ordered_cols,fig_dir="figs", plot_pdf = F,first_col="#
         fl = flow[foc_color,col_i]*2
         if(!is.null(fl) & length(fl) > 0 & fl > T_minflow) {
           calpha = add_alpha(col_i, 0.8)
-          draw_sig_edge(x1=t,
+          draw_sig_edge_3d(x1=t,
 								x2 = t+1,
 								x2t = t+1-2*fl-0.05,
                         y1 = smoo_y1[[foc_color]][as.character(t)], 
@@ -252,7 +252,7 @@ plot_all_veins = function(ordered_cols,fig_dir="figs", plot_pdf = F,first_col="#
         fl = flow[foc_color,col_i]*2
         if(fl > T_minflow) {
           calpha = add_alpha(col_i, 0.8)
-          draw_sig_edge(x1=t,
+          draw_sig_edge_3d(x1=t,
 								x2t = t+1,
 								x2 = t+1-2*fl-0.05,
                         y1 = smoo_y2[[foc_color]][as.character(t)]-fl, 

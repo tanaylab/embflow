@@ -2,7 +2,7 @@
 #source("paper_scripts/fig3_plots.r")
 
 library("metacell")
-source("scripts/generate_paper_figures/fig4_plots.r")
+source("scripts/generate_paper_figures/fig_4.r")
 
 gen_fig_s4_plots = function() {
   
