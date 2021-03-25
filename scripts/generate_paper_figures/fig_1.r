@@ -15,14 +15,12 @@ gen_fig_1_plots = function() {
     dir.create(dir_name)
   }
   
-
   fig1_b()
   fig1_cde()
+  fig1_f()
   fig1_g_mc_time_distributions()
   fig1_g_heatmap(plot_pdf = T)
-  #wt10_four_mcs_rank_distribution_with_barplots()
   fig1_h()
-  fig1_f()
   
 }
 
