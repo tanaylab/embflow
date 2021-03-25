@@ -1,6 +1,6 @@
 source("scripts/generate_paper_figures/plot_network.r")
 
-gen_fig2_plots = function() {
+gen_fig_2_plots = function() {
   tgconfig::override_params("config/sing_emb.yaml","metacell")
   
   if(!dir.exists("figs/paper_figs/fig2")) {

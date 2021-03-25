@@ -6,7 +6,7 @@ library(tidyverse)
 library("metacell")
 scdb_init("scrna_db/",force_reinit = T)
 
-gen_fig5_plots = function() {
+gen_fig_5_plots = function() {
   
   if(!dir.exists("figs/paper_figs/fig5")) {
     dir.create("figs/paper_figs/fig5")

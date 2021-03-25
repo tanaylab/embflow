@@ -6,7 +6,7 @@ tgconfig::override_params("config/sing_emb.yaml","metacell")
 
 source("scripts/generate_paper_figures/plot_vein.r")
 
-gen_fig4_plots = function() {
+gen_fig_4_plots = function() {
   
   if(!dir.exists("figs/paper_figs/fig4")) {
     dir.create("figs/paper_figs/fig4")

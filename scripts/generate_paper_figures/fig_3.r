@@ -8,7 +8,7 @@ tgconfig::override_params("config/sing_emb.yaml","metacell")
 
 # wt10 fig3 plots
 
-gen_fig3_plots = function() {
+gen_fig_3_plots = function() {
   
   # The parameters for all plots can be found in the function fig3_parameters
   

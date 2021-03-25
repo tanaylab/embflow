@@ -8,7 +8,7 @@ source("scripts/foxc12/generate_chimera_tetraploid_data_analysis.r")
 source("scripts/foxc12/definition_cell_types_endoderm_ectoderm_embryonic_mesoderm.r")
 
 
-gen_fig6_plots = function() {
+gen_fig_6_plots = function() {
   
   if(!dir.exists("figs/paper_figs/fig6")) {
     dir.create("figs/paper_figs/fig6")

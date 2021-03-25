@@ -1,12 +1,10 @@
 library("metacell")
 scdb_init("scrna_db/",force_reinit = T)
-scfigs_init("figs")
-library("tglkmeans")
 library(gridExtra)
 
 
 
-gen_fig1_plots = function() {
+gen_fig_1_plots = function() {
   
   if(!dir.exists("figs/paper_figs")) {
     dir.create("figs/paper_figs")

@@ -1,7 +1,7 @@
 # fig 7 plots
-source("scripts/generate_paper_figures/fig7_vein_all.r")
+source("scripts/generate_paper_figures/plot_3d_vein.r")
 
-gen_fig7_plots = function() {
+gen_fig_7_plots = function() {
   
   if(!dir.exists("figs/paper_figs/fig7")) {
     dir.create("figs/paper_figs/fig7")
