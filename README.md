@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/346700550.svg)](https://zenodo.org/badge/latestdoi/346700550)
+
 A single embryo, single cell time-resolved model for mouse gastrulation
 =======================================================================
 
