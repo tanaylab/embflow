@@ -15,7 +15,6 @@ This repository contains all the code for reproducing the analysis from the gast
 
 - metacell
 - lpsymphony
-- tidyverse
 - pheatmap
 - gridExtra
 - Matrix
