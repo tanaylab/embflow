@@ -174,6 +174,25 @@ This will transfer cell-type and time annotation from the wt atlas to chimera/te
 - Merging each single-cell matrix with the wt single-cell matrix and creating a joint single-cell graph (metacell *cgraph* object).
 See summary_preprocessing.r and the corresponding scripts for more details.
 
+### Using Docker 
+
+To generate all the figures of the paper using the docker image, please run the following commands: 
+
+```bash
+docker pull tanaylab/embflow:latest
+mkdir figs
+docker run -ti --user $(id -u):$(id -g) -v $(pwd)/figs:/embflow/figs tanaylab/embflow:latest
+```
+
+And then run within the R session: 
+
+```R
+source("scripts/initialize_scripts.r")
+generate_all_figures()
+```
+
+The figures would be then generated in the mounted directory "figs". 
+
 
 ### Contact
 For help, please contact <markus.mittnenzweig@weizmann.ac.il>
