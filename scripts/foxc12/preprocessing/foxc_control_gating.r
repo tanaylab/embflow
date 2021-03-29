@@ -41,9 +41,6 @@ gating_of_foxc_control = function(fig_dir) {
   
   col_fsc_ssc = densCols(x = gfp_tr,y = fsc_a)
   
-  plot(gfp_tr,fsc_a,pch = 19,cex = 0.4,ylab = "FSC-A",xlab = "gfp",col = col_fsc_ssc,
-       xlim = xlim,ylim = ylim)
-  
   names(gfp_tr) = cls
   names(ssc_w) = cls
   names(fsc_a) = cls
