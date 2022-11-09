@@ -1,10 +1,10 @@
 # script for downloading and initializing the single-cell RNA-seq database for the metacell package
 
-download.file("http://www.wisdom.weizmann.ac.il/~atanay/embflow/data_embflow.tar.gz", "data_embflow.tar.gz")
+download.file("https://embflow.s3.eu-west-1.amazonaws.com/data_embflow.tar.gz", "data_embflow.tar.gz")
 
 system("tar -xvf data_embflow.tar.gz data")
 
-download.file("http://www.wisdom.weizmann.ac.il/~atanay/embflow/scrna_db_embflow.tar.gz","scrna_db_embflow.tar.gz")
+download.file("https://embflow.s3.eu-west-1.amazonaws.com/scrna_db_embflow.tar.gz","scrna_db_embflow.tar.gz")
 
 system("tar -xvf scrna_db_embflow.tar.gz scrna_db")
 
